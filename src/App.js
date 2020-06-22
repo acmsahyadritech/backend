@@ -28,16 +28,20 @@ submit =(event)=>{
     lastname: this.state.lastname,
     email:this.state.email,
     phonenumber :this.state.phonenumber,
-    query :this.state.query
+    query :this.state.query,
+
   };
 
 axios({
   url:'http://localhost:5000/details/add',
   method:'POST',
-  data:detail
+  data:detail,
+  headers: { 'content-type': 'application/json' }
 })
 .then(()=>{
   console.log("Data has been sent to the server!");
+  alert("You have successfully filled the form,Thank You!");
+  window.location="/";
 })
 .catch(()=>{
   console.log("Internal server error!");
@@ -51,7 +55,7 @@ render() {
   console.log("state",this.state);
   return(
     <div className="App">
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.submit}>
               <div className="row">
                 <div className="col-lg-6">
                   <div className="form-group">
